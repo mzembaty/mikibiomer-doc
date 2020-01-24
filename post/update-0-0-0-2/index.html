@@ -28,10 +28,11 @@
   
     
   
-  <meta name="description" content="Documentation of the R package MIKIbiomeR.">
+  <meta name="description" content="No features were added in this patch. The functions do basically the same. Instead a consistent naming convention was introduced to the functions. Parameters have a more consistent naming and order. Responsibility of functions was reduced, meaning that one function should handle as few tasks as possible. Therefore some new functions were created. Furthermore the use of return() will from now on be discouraged.
+In the following the particular changes are listed.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/">
+  <link rel="alternate" hreflang="en-us" href="/post/update-0-0-0-2/">
 
   
 
@@ -95,14 +96,12 @@
 
 
   
-  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="MIKIbiomeR">
-  
 
   <link rel="manifest" href="/index.webmanifest">
   <link rel="icon" type="image/png" href="/img/icon-32.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/">
+  <link rel="canonical" href="/post/update-0-0-0-2/">
 
   
   
@@ -114,72 +113,84 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="MIKIbiomeR">
-  <meta property="og:url" content="/">
-  <meta property="og:title" content="MIKIbiomeR">
-  <meta property="og:description" content="Documentation of the R package MIKIbiomeR."><meta property="og:image" content="/img/MIKIbiomeR_logo.svg">
+  <meta property="og:url" content="/post/update-0-0-0-2/">
+  <meta property="og:title" content="Update 0.0.0.2 | MIKIbiomeR">
+  <meta property="og:description" content="No features were added in this patch. The functions do basically the same. Instead a consistent naming convention was introduced to the functions. Parameters have a more consistent naming and order. Responsibility of functions was reduced, meaning that one function should handle as few tasks as possible. Therefore some new functions were created. Furthermore the use of return() will from now on be discouraged.
+In the following the particular changes are listed."><meta property="og:image" content="/img/MIKIbiomeR_logo.svg">
   <meta property="twitter:image" content="/img/MIKIbiomeR_logo.svg"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2019-12-18T15:17:54&#43;01:00">
+    
+      <meta property="article:published_time" content="2019-12-18T15:17:54&#43;01:00">
+    
+    <meta property="article:modified_time" content="2019-12-18T15:17:54&#43;01:00">
   
 
   
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "/?q={search_term_string}",
-    "query-input": "required name=search_term_string"
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/update-0-0-0-2/"
   },
-  "url": "/"
-}
-</script>
-
-
+  "headline": "Update 0.0.0.2",
   
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "@id": "/",
-  "name": "Helmholtz Zentrum für Infektionsforschung",
-  "logo": "/img/MIKIbiomeR_logo_white.png",
-  "image": "/img/MIKIbiomeR_logo.svg",
+  "datePublished": "2019-12-18T15:17:54+01:00",
+  "dateModified": "2019-12-18T15:17:54+01:00",
   
-  
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "450 Serra Mall",
-    "addressLocality": "Stanford",
-    "addressRegion": "CA",
-    "postalCode": "94305",
-    "addressCountry": "US"
+  "author": {
+    "@type": "Person",
+    "name": "Martin Zembaty"
   },
   
-  "telephone": "888 888 88 88",
-  "url": "/"
+  "publisher": {
+    "@type": "Organization",
+    "name": "Helmholtz Zentrum für Infektionsforschung",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/img/MIKIbiomeR_logo_white.png"
+    }
+  },
+  "description": "No features were added in this patch. The functions do basically the same. Instead a consistent naming convention was introduced to the functions. Parameters have a more consistent naming and order. Responsibility of functions was reduced, meaning that one function should handle as few tasks as possible. Therefore some new functions were created. Furthermore the use of return() will from now on be discouraged.\nIn the following the particular changes are listed."
 }
 </script>
 
   
 
-
   
 
 
   
 
 
+  
 
 
 
-  <title>MIKIbiomeR</title>
+
+
+  <title>Update 0.0.0.2 | MIKIbiomeR</title>
 
 </head>
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#navbar-main" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
 
   <aside class="search-results" id="search">
   <div class="container">
@@ -268,7 +279,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#info" data-target="#info"><span>Home</span></a>
+          <a class="nav-link " href="/#info"><span>Home</span></a>
         </li>
 
         
@@ -288,7 +299,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/post"><span>News</span></a>
+          <a class="nav-link  active" href="/post"><span>News</span></a>
         </li>
 
         
@@ -343,125 +354,7 @@
 </nav>
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
-<span class="js-widget-page d-none"></span>
-
-
-
-
-  
-
-
-
-
-
-
-
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-
-  <section id="info" class="home-section wg-blank   "  >
-    <div class="container">
-      
-
-
-<div class="row">
-  
-    <div class="col-lg-12">
-      <h1>MIKIbiomeR</h1>
-      
-      <p>Welcome. This is the documentation of the R package MIKIbiomeR. On this website you will
-find tutorials on how to use the package properly.</p>
-<p>MIKIbiomeR is developed to make 16S rRNA analysis more consistent and easy to perform with R.
-It combines variouse tools from ecology, genetics, phylogenetics, vizualization and
-statistics. MIKIbiomeR grounds on the phyloseq package and extends it&rsquo;s functionality in
-several topics using most recent development in the field.</p>
-
-    </div>
-  
-</div>
-
-    </div>
-  </section>
-
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-
-  <section id="posts" class="home-section wg-pages   "  >
-    <div class="container">
-      
-
-
-
-
-
-
-
+  <article class="article">
 
   
 
@@ -476,72 +369,20 @@ several topics using most recent development in the field.</p>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   
 
-
-
-
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Update 0.0.0.2</h1>
 
   
+  <p class="page-subtitle">1st Refactoring</p>
+  
 
-
-<div class="row">
-  <div class="col-12 col-lg-4 section-heading">
-    <h1>Recent Updates</h1>
+  
     
-  </div>
-  <div class="col-12 col-lg-8">
-
-    
-
-    
-      
-        
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0">
-      <a href="/post/update-0-0-0-2/" >Update 0.0.0.2</a>
-    </h3>
-
-    
-    <div class="article-style">
-      No features were added in this patch. The functions do basically the same. Instead a consistent naming convention was introduced to the …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
 
 
 <div class="article-metadata">
@@ -577,30 +418,175 @@ several topics using most recent development in the field.</p>
 
 </div>
 
-      
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>No features were added in this patch. The functions do basically the same. Instead
+a consistent naming convention was introduced to the functions. Parameters have a
+more consistent naming and order. Responsibility of functions was reduced,
+meaning that one function should handle as few tasks as possible. Therefore some
+new functions were created. Furthermore the use of <code>return()</code> will from now on
+be <a href="https://stackoverflow.com/questions/11738823/explicitly-calling-return-in-a-function-or-not#11834490">discouraged</a>.</p>
+<p>In the following the particular changes are listed.</p>
+<h2 id="new-functions">New functions</h2>
+<ul>
+<li><code>alpha_div_plot()</code> <em>plots only one alpha distance</em></li>
+<li><code>adonis_plot()</code> <em>plots adonis results</em></li>
+<li><code>ordination_plot()</code> <em>plots ordination</em></li>
+</ul>
+<h2 id="changed-function-names">Changed function names</h2>
+<ul>
+<li>alpha_diversity_plus_dt() -&gt; alpha_div_calc()</li>
+<li>alpha_diversity_plus_plot -&gt; alpha_div_plots()</li>
+<li>get_beta_distance() -&gt; beta_dist_calc()</li>
+<li>get_beta_distance_plot() -&gt; beta_dist_plot()</li>
+<li>facet_barplot() -&gt; abundance_plot()</li>
+</ul>
+<h2 id="specific-function-changes">Specific function changes</h2>
+<h3 id="data_load">data_load()</h3>
+<p><em>Parameter changed:</em></p>
+<ul>
+<li>&ldquo;OTUTABLE&rdquo; is now &ldquo;otu&rdquo;</li>
+<li>&ldquo;MAPPINGFILE&rdquo; is now &ldquo;map&rdquo;</li>
+<li>&ldquo;TREE&rdquo; is now &ldquo;tree&rdquo;</li>
+<li>additional &ldquo;verbose&rdquo; boolean parameter.  If TRUE print step progress.</li>
+</ul>
+<h3 id="alpha_div_calc">alpha_div_calc()</h3>
+<p><em>Parameter changed:</em></p>
+<ul>
+<li>uses &ldquo;BF_ratio&rdquo; instead of &ldquo;bf_ratio&rdquo;</li>
+</ul>
+<h3 id="beta_dist_calc">beta_dist_calc()</h3>
+<p><em>Parameter changed:</em></p>
+<ul>
+<li>instead of &ldquo;s&rdquo;, &ldquo;sample_ID&rdquo; is used</li>
+<li>standard parameter value of dist, describing the distance method, is removed.
+Since this is an imported decision and users should choose the fitting value.</li>
+</ul>
+<p>Added <code>suppressWarnings()</code> to inhibit warning for type conversion in S4 objects.
+To avoid this warning one has to write considerable amount of code, not changing
+the outcome.</p>
+<h3 id="get_beta_distances_plot">get_beta_distances_plot()</h3>
+<p><em>Parameter changed:</em></p>
+<ul>
+<li>x and y removed. Comparison and value is always plotted. No parameters needed</li>
+</ul>
+<h3 id="implicit-package-use">Implicit package use</h3>
+<p>Most of the code style <code>package::function</code> was dropped in favor of
+<code>@importFrom package function</code> style at the start of the function.
+This makes the code much more readable, but is a little unsafer,
+since the functions package is not explicitly declared.
+Many errors poped up <em>only</em> after <code>devtools::install()</code> was used. A lot had to
+do with some wierd bug, in which one cannot write the following:</p>
+<pre><code class="language-r">@importFrom package function
+function(x) &lt;- foo
+</code></pre>
+<p>One had to write <code>package::function(x) &lt;- foo</code></p>
+<h2 id="packages">Packages</h2>
+<ul>
+<li>replaced <em>egg</em> with <em>patchwork</em></li>
+</ul>
+<h2 id="bugs-found">Bugs found</h2>
+<ul>
+<li>in <code>alpha_div_calc()</code> an additional X is introduced in the SampleIDs.
+This issue was bypassed using regexp, which is extremely dangerous!
+See issue #14 for more on this subject. I don&rsquo;t know how to solve this yet.</li>
+<li>See issue #15 abundance_plot() only plots relative abundance when x=SampleID.</li>
+</ul>
+
     </div>
 
     
 
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
       
+      <img class="portrait mr-3" src="/authors/admin/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_250x250_fill_q90_lanczos_center.jpg" alt="Avatar">
     
 
-    
-
-  </div>
-</div>
+    <div class="media-body">
+      <h5 class="card-title"><a href="/authors/admin/">Martin Zembaty</a></h5>
+      <h6 class="card-subtitle">Master Student</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+</ul>
 
     </div>
-  </section>
+  </div>
 
 
+
+
+
+
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+</div>
+
+</div>
+
+
+
+  
+  
+
+
+
+  </div>
+</article>
 
       
 

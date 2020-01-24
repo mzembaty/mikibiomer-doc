@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.6.3">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Martin Zembaty">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Learn how to accelerate you 16S rRNA analysis with MIKIbiomeR.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/docs/basics/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon-32.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/docs/basics/">
+
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="MIKIbiomeR">
+  <meta property="og:url" content="/docs/basics/">
+  <meta property="og:title" content="Basics | MIKIbiomeR">
+  <meta property="og:description" content="Learn how to accelerate you 16S rRNA analysis with MIKIbiomeR."><meta property="og:image" content="/img/MIKIbiomeR_logo.svg">
+  <meta property="twitter:image" content="/img/MIKIbiomeR_logo.svg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2019-12-17T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2019-12-17T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Basics | MIKIbiomeR</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/"><img src="/img/MIKIbiomeR_logo_white.png" alt="MIKIbiomeR"></a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/"><img src="/img/MIKIbiomeR_logo_white.png" alt="MIKIbiomeR"></a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#info"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/post"><span>News</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/docs/"><span>Docs</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item">
+        <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      
+
+
+
+
+
+  
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <input name="q" type="search" class="form-control" placeholder="Search..." autocomplete="off">
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+
+  
+  
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/docs/">Overview</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/docs/install/">Install</a>
+
+  </div>
+  
+  <div class="docs-toc-item active">
+    <a class="docs-toc-link" href="/docs/basics/">Basics</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/docs/customize_plots/">Customize Plots</a>
+
+  </div>
+  
+  
+</nav>
+
+    </div>
+
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+      </ul>
+
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#loading-data">Loading Data</a></li>
+    <li><a href="#alpha-diversity">$\alpha$-Diversity</a></li>
+    <li><a href="#beta-diversity">$\beta$-Diversity</a>
+      <ul>
+        <li><a href="#ordination--adonis">Ordination & Adonis</a></li>
+        <li><a href="#direct-distance-comparison">Direct distance comparison</a></li>
+        <li><a href="#abundance-plot">Abundance plot</a></li>
+      </ul>
+    </li>
+    <li><a href="#differential-abundance">Differential Abundance</a>
+      <ul>
+        <li><a href="#deseq2">DESeq2</a></li>
+        <li><a href="#aldex2">ALDEx2</a></li>
+        <li><a href="#lefse">LEfSe</a></li>
+        <li><a href="#random-forest">Random Forest</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          <h1>Basics</h1>
+
+          <div class="article-style">
+            <p>Here you will learn the fundamentals of MIKIbiomeR.</p>
+<h2 id="projects">Projects</h2>
+<p>RStudio has a great way to create easy to share distinct analysis,
+<a href="https://rafalab.github.io/dsbook/reproducible-projects-with-rstudio-and-r-markdown.html#rstudio-projects">Projects</a>.
+As a rule of thumb, every experiment should have it&rsquo;s own project.
+It&rsquo;s also good pratice to keep a seperate folder only for your raw data.
+After you created a new Project, create a new folder called &lsquo;data&rsquo; in
+your project folder and copy your raw data into it.</p>
+<p>MIKIbiomeR needs 3 files.</p>
+<ul>
+<li>mapping file</li>
+<li>otu count table</li>
+<li>tree file</li>
+</ul>
+<p>Now create a new file for you code. This can be either a R script or a
+Rmarkdown file. You can also use MIKIbiomeR&rsquo;s handy template, since most
+16S rRNA analysis share a common structure.</p>
+<p>To use MIKIbiomeR in the new script, first thing to do is to load the
+library in R:</p>
+<pre><code class="language-r">library(&quot;MIKIbiomeR&quot;)
+</code></pre>
+<h2 id="loading-data">Loading Data</h2>
+<div class="alert alert-note">
+  <div>
+    In the whole documentation a dataset will be used, which compares the
+microbiome in different mice. These mice come from different vendors.
+  </div>
+</div>
+<p>Then we load raw data into R using MIKIbiomeR&rsquo;s <code>data_load()</code>:</p>
+<pre><code class="language-r">data_load(map = &quot;mapping_file_path.txt&quot;,
+          otu = &quot;otu_file_path.biom&quot;,
+          tree = &quot;tree_file_path.tree)
+</code></pre>
+<p>This will create a &lsquo;phyloseq object&rsquo; from the
+<a href="https://joey711.github.io/phyloseq">phyloseq package</a>.</p>
+<p>If your raw data is stored in a folder called &lsquo;data&rsquo;,
+you would point to the location like this:</p>
+<pre><code class="language-r">phylo &lt;- data_load(map = &quot;data/mapping_file.txt&quot;,
+                   otu = &quot;data/otu_file.biom&quot;,
+                   tree = &quot;data/tree_file.tree)
+</code></pre>
+<p>There are also some example data shipped with the package,
+which can be accessed with <code>system.path()</code> from base r.</p>
+<pre><code class="language-r"># get example data path
+mapfile_path &lt;- system.file(&quot;MapFile.txt&quot;, package = &quot;MIKIbiomeR&quot;)
+otu_table_path &lt;- system.file(&quot;final_otutable_tax.biom&quot;, package = &quot;MIKIbiomeR&quot;)
+tree_path &lt;- system.file(&quot;Rep_Set_tree.tree&quot;, package = &quot;MIKIbiomeR&quot;)
+
+# load data from path
+phylo &lt;- data_load(map = mapfile_path,
+                   otu = otu_table_path,
+                   tree = tree_path)
+</code></pre>
+<p>There is also a ready to use example phyloseq object,
+which can be simply load with <code>data()</code>.</p>
+<pre><code class="language-r">phylo &lt;- data(mice_B6_N)
+</code></pre>
+<p>If everything worked correctly the imported data should be converted to a
+phyloseq object. Printing the object would result in something similiar to
+this:</p>
+<pre><code class="language-r"># printing the object by typing out its name
+phylo
+
+# result
+phyloseq-class experiment-level object
+otu_table()   OTU Table:         [ 453 taxa and 166 samples ]
+sample_data() Sample Data:       [ 166 samples by 16 sample variables ]
+tax_table()   Taxonomy Table:    [ 453 taxa by 7 taxonomic ranks ]
+phy_tree()    Phylogenetic Tree: [ 453 tips and 452 internal nodes ]
+</code></pre>
+<h2 id="alpha-diversity">$\alpha$-Diversity</h2>
+<p>MIKIbiomeR calculates 7 different $\alpha$-diversity distances
+(Observed, Chao1, ACE, Shannon, Simpson, InvSimpson,BF_ratio).
+BF_ratio calculates the bacteroides to firmicutes ratio.</p>
+<p><code>alpha_div_calc()</code> calculates all the $\alpha$-diversity distances at once and
+adds the information to the sample data of the phyloseq object.</p>
+<pre><code class="language-r">phylo_alpha &lt;- alpha_div_calc(phylo)
+
+# check results
+sample_data(phylo_alpha)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">Observed</th>
+<th align="right">Chao1</th>
+<th align="right">se.chao1</th>
+<th align="right">ACE</th>
+<th align="right">se.ACE</th>
+<th align="right">Shannon</th>
+<th align="right">Simpson</th>
+<th align="right">InvSimpson</th>
+<th align="right">BF_ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">100L19</td>
+<td align="right">93</td>
+<td align="right">98.83333</td>
+<td align="right">4.164971</td>
+<td align="right">104.18753</td>
+<td align="right">5.056604</td>
+<td align="right">3.431708</td>
+<td align="right">0.9424020</td>
+<td align="right">17.36171</td>
+<td align="right">0.2404653</td>
+</tr>
+<tr>
+<td align="left">101L19</td>
+<td align="right">88</td>
+<td align="right">118.66667</td>
+<td align="right">16.940788</td>
+<td align="right">109.55210</td>
+<td align="right">5.177028</td>
+<td align="right">3.081947</td>
+<td align="right">0.9152860</td>
+<td align="right">11.80442</td>
+<td align="right">0.2206887</td>
+</tr>
+<tr>
+<td align="left">102L19</td>
+<td align="right">82</td>
+<td align="right">96.25000</td>
+<td align="right">8.653266</td>
+<td align="right">99.59932</td>
+<td align="right">5.074948</td>
+<td align="right">3.158823</td>
+<td align="right">0.9256140</td>
+<td align="right">13.44339</td>
+<td align="right">0.1564885</td>
+</tr>
+<tr>
+<td align="left">103L19</td>
+<td align="right">82</td>
+<td align="right">94.00000</td>
+<td align="right">7.959739</td>
+<td align="right">93.20114</td>
+<td align="right">4.761550</td>
+<td align="right">3.119463</td>
+<td align="right">0.9242470</td>
+<td align="right">13.20080</td>
+<td align="right">0.2095097</td>
+</tr>
+<tr>
+<td align="left">104L19</td>
+<td align="right">83</td>
+<td align="right">88.57143</td>
+<td align="right">4.240918</td>
+<td align="right">91.19668</td>
+<td align="right">4.625123</td>
+<td align="right">3.250927</td>
+<td align="right">0.9324255</td>
+<td align="right">14.79848</td>
+<td align="right">0.2392315</td>
+</tr>
+<tr>
+<td align="left">105L19</td>
+<td align="right">84</td>
+<td align="right">97.90909</td>
+<td align="right">8.683968</td>
+<td align="right">98.07586</td>
+<td align="right">4.851067</td>
+<td align="right">3.185105</td>
+<td align="right">0.9288165</td>
+<td align="right">14.04820</td>
+<td align="right">0.2679954</td>
+</tr>
+</tbody>
+</table>
+<p>To plot the distances use either <code>alpha_div_plot()</code> to create only one plot for
+one distance method or <code>alpha_div_plots()</code> to create all plots at once and
+output them as a <code>list</code>.</p>
+<pre><code class="language-r">alpha_div_plot(analysis_alpha, &quot;Vendors&quot;, color_var = &quot;Vendors&quot;,
+               alpha_dist = &quot;BF_ratio&quot;)
+</code></pre>
+<pre><code class="language-r">alpha_div_plots(analysis_alpha, &quot;Vendors&quot;, color_var = &quot;Vendors&quot;)
+</code></pre>
+<div class="alert alert-note">
+  <div>
+    <p>Almost all plots created in MIKIbiomeR are made with ggplot2. They can be
+adjusted as well as any other ggplot2 object.</p>
+<p>In <a href="/docs/customize_plots/">Customize Plots</a> are frequently asked
+customizations, as well as some hints how to use certain parameters.</p>
+  </div>
+</div>
+<h2 id="beta-diversity">$\beta$-Diversity</h2>
+<p>How different is the microbial composition in one environment compared to
+another? Beta diversity shows the difference between microbial communities
+from different environments. Main focus is on the difference in taxonomic
+abundance profiles from different samples.</p>
+<div class="alert alert-note">
+  <div>
+    <p>Before going on we need to normalize the OTU table to the same sample depth.</p>
+<p>TODO: elaborate here</p>
+  </div>
+</div>
+<h3 id="ordination--adonis">Ordination &amp; Adonis</h3>
+<p>To plot multivariate data, ordination is often used. It orders multivariate
+data in such a way, that similar data is close to each other and dissimilar are
+further from each other.</p>
+<p>Adonis performs a MANOVA and is an alternative aproach to ordination. It also
+tries to explain how variation is attributed to different experimental
+treatments or uncontrolled covariates.</p>
+<p>With <code>beta_ordination()</code> several computations are combined in one function.
+$\beta$-diversity measurements, ordination matrix and adonis are calculated and
+then plotted together. Additionally adonis calculation results are printed to
+the console. Over the ordination scatterplot is an optional star plot plotted.</p>
+<pre><code class="language-r">beta_ordination(phylo, distance_method = &quot;bray&quot;,
+                 formula = &quot;Genotype + Experiment + Cage&quot;,
+                 ordination_type = &quot;NMDS&quot;,
+                 color = &quot;Genotype&quot;)
+</code></pre>
+<h3 id="direct-distance-comparison">Direct distance comparison</h3>
+<p>To compare $\beta$-diversity distances between samples directly
+<code>beta_dist_calc()</code> should be used and the results plotted with
+<code>beta_dist_plot()</code>.</p>
+<pre><code class="language-r">beta_dist &lt;- beta_dist_calc(phylo, var = &quot;Genotype&quot;, dist = &quot;unifrac&quot;)
+beta_dist_plot(beta_dist)
+</code></pre>
+<h3 id="abundance-plot">Abundance plot</h3>
+<p><code>abundance_plot()</code> creates a stacked bar plot of taxa abundance.</p>
+<p>The parameter <code>taxlev</code> sets to which taxonomic level the taxa should be summed
+up to. The parameter <code>ntaxa</code> sets how many of the most abundand taxa should be
+displayed individually, the others will be summed up as a group called
+&ldquo;Others&rdquo;.</p>
+<pre><code class="language-r">abundance_plot(phylo = phylo, &quot;Vendor&quot;, facetby = &quot;Experiment&quot;)
+</code></pre>
+<p>Relative abundances can be calculated with <code>calc_rel_abund()</code>, which in turn
+can be plotted.</p>
+<pre><code class="language-r">phylo_rel &lt;- calc_rel_abund(phylo)
+abundance_plot(phylo = phylo_rel, &quot;SampleID&quot;, facetby = &quot;Experiment&quot;)
+</code></pre>
+<hr>
+<div class="alert alert-warning">
+  <div>
+    The functions in the topics below are likely to change in the near future!
+  </div>
+</div>
+<h2 id="differential-abundance">Differential Abundance</h2>
+<p>Right now MIKIbiomeR supports DESeq2 to calculate differential abundance.</p>
+<h3 id="deseq2">DESeq2</h3>
+<p>DESeq2 can compare multivariate data. <code>deseq2_plot()</code> creates a MA-plot, which
+shows the $log_2$ fold changes attributable to a given variable over the mean of
+normalized counts for all OTUs.</p>
+<pre><code class="language-r">deseq2_res &lt;- MIKIbiomeR::deseq2_analysis(phylo, &quot;Vendor&quot;, alpha = 0.05)
+deseq2_plot(deseq2_res, title = &quot;HZI vs N6&quot;, label_taxlev = &quot;Family&quot;)
+</code></pre>
+<h3 id="aldex2">ALDEx2</h3>
+<p>ALDEx2 can only compare 2 variables with each other.</p>
+<pre><code class="language-r">aldex2_res &lt;- ALDEx2::aldex(phylo@otu_table, as.character(sample_data(phylo)$Genotype))
+ALDEx2::aldex.plot(aldex2_res, type = &quot;MA&quot;, test = &quot;welch&quot;)   
+ALDEx2::aldex.plot(aldex2_res, type=&quot;MW&quot;, test=&quot;welch&quot;)
+</code></pre>
+<h3 id="lefse">LEfSe</h3>
+<p>Coming soon</p>
+<h3 id="random-forest">Random Forest</h3>
+<p>Random forest is a machine learning technique. In MIKIbiomeR it is used to
+produce a classification model. The resulting model gives hints on, which
+OTUs can explain the best the differences between defined groups.</p>
+<pre><code class="language-r">model &lt;- classify_randomForest(phylo, &quot;Vendor&quot;)
+plot_randomForest_results(model, phylo, &quot;Vendor&quot;, top = 5)
+</code></pre>
+
+          </div>
+
+          
+
+
+
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/docs/install/" rel="next">Install</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/docs/customize_plots/" rel="prev">Customize Plots</a>
+  </div>
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>Last updated on 2019-12-17</p>
+
+          
+
+
+
+
+          
+
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    © 2020 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+
+      
+
+    
+    
+    
+    <script src="/js/mathjax-config.js"></script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+      
+
+      
+      
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3227ab49eed49815d1b4ba40154f74e7.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

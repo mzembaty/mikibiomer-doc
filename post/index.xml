@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>News | MIKIbiomeR</title>
+    <link>/post/</link>
+      <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <description>News</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Wed, 18 Dec 2019 15:17:54 +0100</lastBuildDate>
+    <image>
+      <url>/img/MIKIbiomeR_logo.svg</url>
+      <title>News</title>
+      <link>/post/</link>
+    </image>
+    
+    <item>
+      <title>Update 0.0.0.2</title>
+      <link>/post/update-0-0-0-2/</link>
+      <pubDate>Wed, 18 Dec 2019 15:17:54 +0100</pubDate>
+      <guid>/post/update-0-0-0-2/</guid>
+      <description>&lt;p&gt;No features were added in this patch. The functions do basically the same. Instead
+a consistent naming convention was introduced to the functions. Parameters have a
+more consistent naming and order. Responsibility of functions was reduced,
+meaning that one function should handle as few tasks as possible. Therefore some
+new functions were created. Furthermore the use of &lt;code&gt;return()&lt;/code&gt; will from now on
+be &lt;a href=&#34;https://stackoverflow.com/questions/11738823/explicitly-calling-return-in-a-function-or-not#11834490&#34;&gt;discouraged&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In the following the particular changes are listed.&lt;/p&gt;
+&lt;h2 id=&#34;new-functions&#34;&gt;New functions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;alpha_div_plot()&lt;/code&gt; &lt;em&gt;plots only one alpha distance&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;adonis_plot()&lt;/code&gt; &lt;em&gt;plots adonis results&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ordination_plot()&lt;/code&gt; &lt;em&gt;plots ordination&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;changed-function-names&#34;&gt;Changed function names&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;alpha_diversity_plus_dt() -&amp;gt; alpha_div_calc()&lt;/li&gt;
+&lt;li&gt;alpha_diversity_plus_plot -&amp;gt; alpha_div_plots()&lt;/li&gt;
+&lt;li&gt;get_beta_distance() -&amp;gt; beta_dist_calc()&lt;/li&gt;
+&lt;li&gt;get_beta_distance_plot() -&amp;gt; beta_dist_plot()&lt;/li&gt;
+&lt;li&gt;facet_barplot() -&amp;gt; abundance_plot()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;specific-function-changes&#34;&gt;Specific function changes&lt;/h2&gt;
+&lt;h3 id=&#34;data_load&#34;&gt;data_load()&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Parameter changed:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;OTUTABLE&amp;rdquo; is now &amp;ldquo;otu&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;MAPPINGFILE&amp;rdquo; is now &amp;ldquo;map&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;TREE&amp;rdquo; is now &amp;ldquo;tree&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;additional &amp;ldquo;verbose&amp;rdquo; boolean parameter.  If TRUE print step progress.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;alpha_div_calc&#34;&gt;alpha_div_calc()&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Parameter changed:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;uses &amp;ldquo;BF_ratio&amp;rdquo; instead of &amp;ldquo;bf_ratio&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;beta_dist_calc&#34;&gt;beta_dist_calc()&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Parameter changed:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;instead of &amp;ldquo;s&amp;rdquo;, &amp;ldquo;sample_ID&amp;rdquo; is used&lt;/li&gt;
+&lt;li&gt;standard parameter value of dist, describing the distance method, is removed.
+Since this is an imported decision and users should choose the fitting value.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Added &lt;code&gt;suppressWarnings()&lt;/code&gt; to inhibit warning for type conversion in S4 objects.
+To avoid this warning one has to write considerable amount of code, not changing
+the outcome.&lt;/p&gt;
+&lt;h3 id=&#34;get_beta_distances_plot&#34;&gt;get_beta_distances_plot()&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Parameter changed:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;x and y removed. Comparison and value is always plotted. No parameters needed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;implicit-package-use&#34;&gt;Implicit package use&lt;/h3&gt;
+&lt;p&gt;Most of the code style &lt;code&gt;package::function&lt;/code&gt; was dropped in favor of
+&lt;code&gt;@importFrom package function&lt;/code&gt; style at the start of the function.
+This makes the code much more readable, but is a little unsafer,
+since the functions package is not explicitly declared.
+Many errors poped up &lt;em&gt;only&lt;/em&gt; after &lt;code&gt;devtools::install()&lt;/code&gt; was used. A lot had to
+do with some wierd bug, in which one cannot write the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;@importFrom package function
+function(x) &amp;lt;- foo
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;One had to write &lt;code&gt;package::function(x) &amp;lt;- foo&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;packages&#34;&gt;Packages&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;replaced &lt;em&gt;egg&lt;/em&gt; with &lt;em&gt;patchwork&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;bugs-found&#34;&gt;Bugs found&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;in &lt;code&gt;alpha_div_calc()&lt;/code&gt; an additional X is introduced in the SampleIDs.
+This issue was bypassed using regexp, which is extremely dangerous!
+See issue #14 for more on this subject. I don&amp;rsquo;t know how to solve this yet.&lt;/li&gt;
+&lt;li&gt;See issue #15 abundance_plot() only plots relative abundance when x=SampleID.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

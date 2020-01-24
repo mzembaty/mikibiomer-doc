@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MIKIbiomeR</title>
+    <link>/</link>
+      <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <description>MIKIbiomeR</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Wed, 18 Dec 2019 15:17:54 +0100</lastBuildDate>
+    <image>
+      <url>/img/MIKIbiomeR_logo.svg</url>
+      <title>MIKIbiomeR</title>
+      <link>/</link>
+    </image>
+    
+    <item>
+      <title>Install</title>
+      <link>/docs/install/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>/docs/install/</guid>
+      <description>&lt;h2 id=&#34;r-and-rstudio&#34;&gt;R and RStudio&lt;/h2&gt;
+&lt;p&gt;If you don&amp;rsquo;t have R and RStudio installed go to the
+&lt;a href=&#34;https://rstudio.com/products/rstudio/download/#download&#34;&gt;RStudio website&lt;/a&gt;
+and download the right version for your operating system (Windows, Mac, Linux).&lt;/p&gt;
+&lt;p&gt;If you need an introduction using R there are several free resources on the web.
+Here is a small selection:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://r4ds.had.co.nz/&#34;&gt;R for Data Science by &lt;em&gt;Hadley Wickham&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.coursera.org/learn/r-programming-environment&#34;&gt;The R Programming Environment - Coursera&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=32o0DnuRjfg&amp;amp;list=PLTJTBoU5HOCRrTs3cJK-PbHM39cwCU0PF&amp;amp;index=1&#34;&gt;Youtube Course by &lt;em&gt;David Langer&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;mikibiomer&#34;&gt;MIKIbiomeR&lt;/h2&gt;
+&lt;p&gt;Since MIKIbiomeR is still in developement and only accesible via Github,
+a special package is needed to install it. In the R console
+install &amp;lsquo;devtools&amp;rsquo; with the following code:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;install.packages(&amp;quot;devtools&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After devtools is installed MIKIbiomeR can be downloaded from the Github
+repository. Keep in mind, that the package is not published yet, therefore
+the access is limited to the MIKI Lab, who have the secrete token.You
+install the package via the following command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;devtools::install_github(repo = &amp;quot;mzembaty/MIKIbiomeR&amp;quot;,
+                        auth_token = &amp;quot;copy_secrete_token_here&amp;quot;,
+                        force = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you are using a rmarkdown file, keep an eye on your terminal, when
+installing a new package. Sometimes R needs to make updates to some
+existing packages and will ask for input, but this shows only in the
+terminal not in the output panel.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Basics</title>
+      <link>/docs/basics/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>/docs/basics/</guid>
+      <description>&lt;p&gt;Here you will learn the fundamentals of MIKIbiomeR.&lt;/p&gt;
+&lt;h2 id=&#34;projects&#34;&gt;Projects&lt;/h2&gt;
+&lt;p&gt;RStudio has a great way to create easy to share distinct analysis,
+&lt;a href=&#34;https://rafalab.github.io/dsbook/reproducible-projects-with-rstudio-and-r-markdown.html#rstudio-projects&#34;&gt;Projects&lt;/a&gt;.
+As a rule of thumb, every experiment should have it&amp;rsquo;s own project.
+It&amp;rsquo;s also good pratice to keep a seperate folder only for your raw data.
+After you created a new Project, create a new folder called &amp;lsquo;data&amp;rsquo; in
+your project folder and copy your raw data into it.&lt;/p&gt;
+&lt;p&gt;MIKIbiomeR needs 3 files.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;mapping file&lt;/li&gt;
+&lt;li&gt;otu count table&lt;/li&gt;
+&lt;li&gt;tree file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now create a new file for you code. This can be either a R script or a
+Rmarkdown file. You can also use MIKIbiomeR&amp;rsquo;s handy template, since most
+16S rRNA analysis share a common structure.&lt;/p&gt;
+&lt;p&gt;To use MIKIbiomeR in the new script, first thing to do is to load the
+library in R:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(&amp;quot;MIKIbiomeR&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;loading-data&#34;&gt;Loading Data&lt;/h2&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    In the whole documentation a dataset will be used, which compares the
+microbiome in different mice. These mice come from different vendors.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Then we load raw data into R using MIKIbiomeR&amp;rsquo;s &lt;code&gt;data_load()&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;data_load(map = &amp;quot;mapping_file_path.txt&amp;quot;,
+          otu = &amp;quot;otu_file_path.biom&amp;quot;,
+          tree = &amp;quot;tree_file_path.tree)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This will create a &amp;lsquo;phyloseq object&amp;rsquo; from the
+&lt;a href=&#34;https://joey711.github.io/phyloseq&#34;&gt;phyloseq package&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If your raw data is stored in a folder called &amp;lsquo;data&amp;rsquo;,
+you would point to the location like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;phylo &amp;lt;- data_load(map = &amp;quot;data/mapping_file.txt&amp;quot;,
+                   otu = &amp;quot;data/otu_file.biom&amp;quot;,
+                   tree = &amp;quot;data/tree_file.tree)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are also some example data shipped with the package,
+which can be accessed with &lt;code&gt;system.path()&lt;/code&gt; from base r.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# get example data path
+mapfile_path &amp;lt;- system.file(&amp;quot;MapFile.txt&amp;quot;, package = &amp;quot;MIKIbiomeR&amp;quot;)
+otu_table_path &amp;lt;- system.file(&amp;quot;final_otutable_tax.biom&amp;quot;, package = &amp;quot;MIKIbiomeR&amp;quot;)
+tree_path &amp;lt;- system.file(&amp;quot;Rep_Set_tree.tree&amp;quot;, package = &amp;quot;MIKIbiomeR&amp;quot;)
+
+# load data from path
+phylo &amp;lt;- data_load(map = mapfile_path,
+                   otu = otu_table_path,
+                   tree = tree_path)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There is also a ready to use example phyloseq object,
+which can be simply load with &lt;code&gt;data()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;phylo &amp;lt;- data(mice_B6_N)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If everything worked correctly the imported data should be converted to a
+phyloseq object. Printing the object would result in something similiar to
+this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# printing the object by typing out its name
+phylo
+
+# result
+phyloseq-class experiment-level object
+otu_table()   OTU Table:         [ 453 taxa and 166 samples ]
+sample_data() Sample Data:       [ 166 samples by 16 sample variables ]
+tax_table()   Taxonomy Table:    [ 453 taxa by 7 taxonomic ranks ]
+phy_tree()    Phylogenetic Tree: [ 453 tips and 452 internal nodes ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;alpha-diversity&#34;&gt;$\alpha$-Diversity&lt;/h2&gt;
+&lt;p&gt;MIKIbiomeR calculates 7 different $\alpha$-diversity distances
+(Observed, Chao1, ACE, Shannon, Simpson, InvSimpson,BF_ratio).
+BF_ratio calculates the bacteroides to firmicutes ratio.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;alpha_div_calc()&lt;/code&gt; calculates all the $\alpha$-diversity distances at once and
+adds the information to the sample data of the phyloseq object.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;phylo_alpha &amp;lt;- alpha_div_calc(phylo)
+
+# check results
+sample_data(phylo_alpha)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Observed&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Chao1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;se.chao1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;ACE&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;se.ACE&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Shannon&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Simpson&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;InvSimpson&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;BF_ratio&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;100L19&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;93&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;98.83333&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4.164971&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;104.18753&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5.056604&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.431708&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.9424020&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;17.36171&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2404653&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;101L19&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;88&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;118.66667&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;16.940788&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;109.55210&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5.177028&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.081947&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.9152860&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11.80442&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2206887&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;102L19&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;82&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;96.25000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;8.653266&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;99.59932&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5.074948&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.158823&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.9256140&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13.44339&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.1564885&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;103L19&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;82&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;94.00000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;7.959739&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;93.20114&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4.761550&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.119463&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.9242470&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13.20080&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2095097&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;104L19&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;83&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;88.57143&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4.240918&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;91.19668&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4.625123&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.250927&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.9324255&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;14.79848&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2392315&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;105L19&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;84&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;97.90909&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;8.683968&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;98.07586&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4.851067&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.185105&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.9288165&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;14.04820&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2679954&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;To plot the distances use either &lt;code&gt;alpha_div_plot()&lt;/code&gt; to create only one plot for
+one distance method or &lt;code&gt;alpha_div_plots()&lt;/code&gt; to create all plots at once and
+output them as a &lt;code&gt;list&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;alpha_div_plot(analysis_alpha, &amp;quot;Vendors&amp;quot;, color_var = &amp;quot;Vendors&amp;quot;,
+               alpha_dist = &amp;quot;BF_ratio&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;alpha_div_plots(analysis_alpha, &amp;quot;Vendors&amp;quot;, color_var = &amp;quot;Vendors&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;Almost all plots created in MIKIbiomeR are made with ggplot2. They can be
+adjusted as well as any other ggplot2 object.&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&#34;/docs/customize_plots/&#34;&gt;Customize Plots&lt;/a&gt; are frequently asked
+customizations, as well as some hints how to use certain parameters.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;beta-diversity&#34;&gt;$\beta$-Diversity&lt;/h2&gt;
+&lt;p&gt;How different is the microbial composition in one environment compared to
+another? Beta diversity shows the difference between microbial communities
+from different environments. Main focus is on the difference in taxonomic
+abundance profiles from different samples.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;Before going on we need to normalize the OTU table to the same sample depth.&lt;/p&gt;
+&lt;p&gt;TODO: elaborate here&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;ordination--adonis&#34;&gt;Ordination &amp;amp; Adonis&lt;/h3&gt;
+&lt;p&gt;To plot multivariate data, ordination is often used. It orders multivariate
+data in such a way, that similar data is close to each other and dissimilar are
+further from each other.&lt;/p&gt;
+&lt;p&gt;Adonis performs a MANOVA and is an alternative aproach to ordination. It also
+tries to explain how variation is attributed to different experimental
+treatments or uncontrolled covariates.&lt;/p&gt;
+&lt;p&gt;With &lt;code&gt;beta_ordination()&lt;/code&gt; several computations are combined in one function.
+$\beta$-diversity measurements, ordination matrix and adonis are calculated and
+then plotted together. Additionally adonis calculation results are printed to
+the console. Over the ordination scatterplot is an optional star plot plotted.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;beta_ordination(phylo, distance_method = &amp;quot;bray&amp;quot;,
+                 formula = &amp;quot;Genotype + Experiment + Cage&amp;quot;,
+                 ordination_type = &amp;quot;NMDS&amp;quot;,
+                 color = &amp;quot;Genotype&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;direct-distance-comparison&#34;&gt;Direct distance comparison&lt;/h3&gt;
+&lt;p&gt;To compare $\beta$-diversity distances between samples directly
+&lt;code&gt;beta_dist_calc()&lt;/code&gt; should be used and the results plotted with
+&lt;code&gt;beta_dist_plot()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;beta_dist &amp;lt;- beta_dist_calc(phylo, var = &amp;quot;Genotype&amp;quot;, dist = &amp;quot;unifrac&amp;quot;)
+beta_dist_plot(beta_dist)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;abundance-plot&#34;&gt;Abundance plot&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;abundance_plot()&lt;/code&gt; creates a stacked bar plot of taxa abundance.&lt;/p&gt;
+&lt;p&gt;The parameter &lt;code&gt;taxlev&lt;/code&gt; sets to which taxonomic level the taxa should be summed
+up to. The parameter &lt;code&gt;ntaxa&lt;/code&gt; sets how many of the most abundand taxa should be
+displayed individually, the others will be summed up as a group called
+&amp;ldquo;Others&amp;rdquo;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;abundance_plot(phylo = phylo, &amp;quot;Vendor&amp;quot;, facetby = &amp;quot;Experiment&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Relative abundances can be calculated with &lt;code&gt;calc_rel_abund()&lt;/code&gt;, which in turn
+can be plotted.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;phylo_rel &amp;lt;- calc_rel_abund(phylo)
+abundance_plot(phylo = phylo_rel, &amp;quot;SampleID&amp;quot;, facetby = &amp;quot;Experiment&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    The functions in the topics below are likely to change in the near future!
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;differential-abundance&#34;&gt;Differential Abundance&lt;/h2&gt;
+&lt;p&gt;Right now MIKIbiomeR supports DESeq2 to calculate differential abundance.&lt;/p&gt;
+&lt;h3 id=&#34;deseq2&#34;&gt;DESeq2&lt;/h3&gt;
+&lt;p&gt;DESeq2 can compare multivariate data. &lt;code&gt;deseq2_plot()&lt;/code&gt; creates a MA-plot, which
+shows the $log_2$ fold changes attributable to a given variable over the mean of
+normalized counts for all OTUs.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;deseq2_res &amp;lt;- MIKIbiomeR::deseq2_analysis(phylo, &amp;quot;Vendor&amp;quot;, alpha = 0.05)
+deseq2_plot(deseq2_res, title = &amp;quot;HZI vs N6&amp;quot;, label_taxlev = &amp;quot;Family&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;aldex2&#34;&gt;ALDEx2&lt;/h3&gt;
+&lt;p&gt;ALDEx2 can only compare 2 variables with each other.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;aldex2_res &amp;lt;- ALDEx2::aldex(phylo@otu_table, as.character(sample_data(phylo)$Genotype))
+ALDEx2::aldex.plot(aldex2_res, type = &amp;quot;MA&amp;quot;, test = &amp;quot;welch&amp;quot;)   
+ALDEx2::aldex.plot(aldex2_res, type=&amp;quot;MW&amp;quot;, test=&amp;quot;welch&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;lefse&#34;&gt;LEfSe&lt;/h3&gt;
+&lt;p&gt;Coming soon&lt;/p&gt;
+&lt;h3 id=&#34;random-forest&#34;&gt;Random Forest&lt;/h3&gt;
+&lt;p&gt;Random forest is a machine learning technique. In MIKIbiomeR it is used to
+produce a classification model. The resulting model gives hints on, which
+OTUs can explain the best the differences between defined groups.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;model &amp;lt;- classify_randomForest(phylo, &amp;quot;Vendor&amp;quot;)
+plot_randomForest_results(model, phylo, &amp;quot;Vendor&amp;quot;, top = 5)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Customize Plots</title>
+      <link>/docs/customize_plots/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>/docs/customize_plots/</guid>
+      <description>&lt;h2 id=&#34;beta_ordination&#34;&gt;beta_ordination()&lt;/h2&gt;
+&lt;p&gt;This function performs ordination and an adonis test and plots the results.
+Additionally it prints the results of the adonis test.&lt;/p&gt;
+&lt;h3 id=&#34;ordination-calculations-should-be-printed&#34;&gt;Ordination calculations should be printed&lt;/h3&gt;
+&lt;p&gt;If the calculations performed by the ordination should be calculated aswell,
+set the parameter &lt;code&gt;verbose = TRUE&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;beta_ordination(phylo, distance_method = &amp;quot;bray&amp;quot;,
+                 formula = &amp;quot;Genotype + Experiment + Cage&amp;quot;,
+                 ordination_type = &amp;quot;NMDS&amp;quot;,
+                 color = &amp;quot;Genotype&amp;quot;,
+                verbose = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;plot-only-ordination&#34;&gt;Plot only ordination&lt;/h3&gt;
+&lt;p&gt;If only the ordination plot should appeare, the parameter &lt;code&gt;formula&lt;/code&gt; can be left
+out.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;beta_ordination(phylo, distance_method = &amp;quot;bray&amp;quot;,
+                 ordination_type = &amp;quot;NMDS&amp;quot;,
+                 color = &amp;quot;Genotype&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;no-connections-between-points&#34;&gt;No connections between points&lt;/h3&gt;
+&lt;p&gt;By default &lt;code&gt;beta_ordination()&lt;/code&gt; creates a star plot on top of the ordination
+plot. To prevent this from happening set the parameter &lt;code&gt;geom_star = FALSE&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;beta_ordination(phylo, distance_method = &amp;quot;bray&amp;quot;,
+                 ordination_type = &amp;quot;NMDS&amp;quot;,
+                 color = &amp;quot;Genotype&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;abundance_plot&#34;&gt;abundance_plot()&lt;/h2&gt;
+&lt;h3 id=&#34;known-issues&#34;&gt;Known issues&lt;/h3&gt;
+&lt;h4 id=&#34;stacked-percentage-bars&#34;&gt;Stacked percentage bars&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;abundance_plot(phylo = phylo_rel, &amp;quot;Mouse&amp;quot;, facetby = &amp;quot;Genotype&amp;quot;, taxlev = &amp;quot;Family&amp;quot;, ntaxa = 15)
+abundance_plot(phylo = phylo_rel, &amp;quot;Genotype&amp;quot;, facetby = &amp;quot;Genotype&amp;quot;, taxlev = &amp;quot;Family&amp;quot;, ntaxa = 15)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Creates a bar plot with stacked percentages&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;ordering-sometimes-creates-strange-outputs&#34;&gt;Ordering sometimes creates strange outputs&lt;/h4&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Update 0.0.0.2</title>
+      <link>/post/update-0-0-0-2/</link>
+      <pubDate>Wed, 18 Dec 2019 15:17:54 +0100</pubDate>
+      <guid>/post/update-0-0-0-2/</guid>
+      <description>&lt;p&gt;No features were added in this patch. The functions do basically the same. Instead
+a consistent naming convention was introduced to the functions. Parameters have a
+more consistent naming and order. Responsibility of functions was reduced,
+meaning that one function should handle as few tasks as possible. Therefore some
+new functions were created. Furthermore the use of &lt;code&gt;return()&lt;/code&gt; will from now on
+be &lt;a href=&#34;https://stackoverflow.com/questions/11738823/explicitly-calling-return-in-a-function-or-not#11834490&#34;&gt;discouraged&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In the following the particular changes are listed.&lt;/p&gt;
+&lt;h2 id=&#34;new-functions&#34;&gt;New functions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;alpha_div_plot()&lt;/code&gt; &lt;em&gt;plots only one alpha distance&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;adonis_plot()&lt;/code&gt; &lt;em&gt;plots adonis results&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ordination_plot()&lt;/code&gt; &lt;em&gt;plots ordination&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;changed-function-names&#34;&gt;Changed function names&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;alpha_diversity_plus_dt() -&amp;gt; alpha_div_calc()&lt;/li&gt;
+&lt;li&gt;alpha_diversity_plus_plot -&amp;gt; alpha_div_plots()&lt;/li&gt;
+&lt;li&gt;get_beta_distance() -&amp;gt; beta_dist_calc()&lt;/li&gt;
+&lt;li&gt;get_beta_distance_plot() -&amp;gt; beta_dist_plot()&lt;/li&gt;
+&lt;li&gt;facet_barplot() -&amp;gt; abundance_plot()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;specific-function-changes&#34;&gt;Specific function changes&lt;/h2&gt;
+&lt;h3 id=&#34;data_load&#34;&gt;data_load()&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Parameter changed:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;OTUTABLE&amp;rdquo; is now &amp;ldquo;otu&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;MAPPINGFILE&amp;rdquo; is now &amp;ldquo;map&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;TREE&amp;rdquo; is now &amp;ldquo;tree&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;additional &amp;ldquo;verbose&amp;rdquo; boolean parameter.  If TRUE print step progress.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;alpha_div_calc&#34;&gt;alpha_div_calc()&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Parameter changed:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;uses &amp;ldquo;BF_ratio&amp;rdquo; instead of &amp;ldquo;bf_ratio&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;beta_dist_calc&#34;&gt;beta_dist_calc()&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Parameter changed:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;instead of &amp;ldquo;s&amp;rdquo;, &amp;ldquo;sample_ID&amp;rdquo; is used&lt;/li&gt;
+&lt;li&gt;standard parameter value of dist, describing the distance method, is removed.
+Since this is an imported decision and users should choose the fitting value.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Added &lt;code&gt;suppressWarnings()&lt;/code&gt; to inhibit warning for type conversion in S4 objects.
+To avoid this warning one has to write considerable amount of code, not changing
+the outcome.&lt;/p&gt;
+&lt;h3 id=&#34;get_beta_distances_plot&#34;&gt;get_beta_distances_plot()&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Parameter changed:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;x and y removed. Comparison and value is always plotted. No parameters needed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;implicit-package-use&#34;&gt;Implicit package use&lt;/h3&gt;
+&lt;p&gt;Most of the code style &lt;code&gt;package::function&lt;/code&gt; was dropped in favor of
+&lt;code&gt;@importFrom package function&lt;/code&gt; style at the start of the function.
+This makes the code much more readable, but is a little unsafer,
+since the functions package is not explicitly declared.
+Many errors poped up &lt;em&gt;only&lt;/em&gt; after &lt;code&gt;devtools::install()&lt;/code&gt; was used. A lot had to
+do with some wierd bug, in which one cannot write the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;@importFrom package function
+function(x) &amp;lt;- foo
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;One had to write &lt;code&gt;package::function(x) &amp;lt;- foo&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;packages&#34;&gt;Packages&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;replaced &lt;em&gt;egg&lt;/em&gt; with &lt;em&gt;patchwork&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;bugs-found&#34;&gt;Bugs found&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;in &lt;code&gt;alpha_div_calc()&lt;/code&gt; an additional X is introduced in the SampleIDs.
+This issue was bypassed using regexp, which is extremely dangerous!
+See issue #14 for more on this subject. I don&amp;rsquo;t know how to solve this yet.&lt;/li&gt;
+&lt;li&gt;See issue #15 abundance_plot() only plots relative abundance when x=SampleID.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
